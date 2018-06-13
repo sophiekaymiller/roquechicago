@@ -9,7 +9,10 @@
 import UIKit
 import SwiftyStoreKit
 
+
 class StoreViewController: UIViewController {
+	
+	var purchase: Purchase!
 
     override func viewDidLoad() {
 		super.viewDidLoad()
@@ -27,6 +30,8 @@ class StoreViewController: UIViewController {
 				print("Error: \(result.error ?? "error with StoreKit" as! Error)")
 				}
 		}
+		
+		
 	}
 
     override func didReceiveMemoryWarning() {
@@ -83,6 +88,7 @@ class StoreViewController: UIViewController {
 		}
 	}
 	
+	//Purchase a product (given a SKProduct)
 	func getProductInfo(){
 		SwiftyStoreKit.retrieveProductsInfo(["com.SophieMiller.RoqueSalon.FirstItem"]) { result in
 			if let product = result.retrievedProducts.first {
@@ -92,6 +98,32 @@ class StoreViewController: UIViewController {
 			}
 		}
 	}
+
+	
+	func handlePayment(){
+		SwiftyStoreKit.shouldAddStorePaymentHandler = { payment, product in
+			// return true if the content can be delivered by your app
+			// return false otherwise
+			return true
+		}
+	}
+	
+	//Start Download
+	func startDownload(){
+		SwiftyStoreKit.purchaseProduct("com.SophieMiller.RoqueSalon.FirstItem", quantity: 1, atomically: false) { result in
+			switch result {
+			case .success(let product):
+				let downloads = self.purchase.transaction.downloads
+				if !downloads.isEmpty {
+					SwiftyStoreKit.start(downloads)
+				}
+			case .error(let error):
+				print("\(error)")
+			}
+		}
+	}
+	
+	
 	
     
 }

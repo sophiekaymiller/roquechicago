@@ -1,6 +1,7 @@
 import UIKit
 import Firebase
 import FirebaseUI
+import Compass
 
 class BookingConfirmationViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
@@ -93,7 +94,7 @@ class BookingConfirmationViewController: UIViewController, UIPickerViewDataSourc
         
         FirebaseHelper.save(child: bookingChild, value: bookingVal)
         
-		let appointmentVal: NSDictionary = ["appointmentId": appointmentID, "userId": userID, "serviceProviderId": placeID!, "serviceProviderName": placeName, "lat": lat!, "lng": lng!, "date": date, "time": time, "speciality": specialty ?? ""]
+		let appointmentVal: NSDictionary = ["appointmentId": appointmentID, "userId": userID, "serviceProviderId": placeID!, "serviceProviderName": placeName!, "lat": lat!, "lng": lng!, "date": date, "time": time, "speciality": specialty ?? ""]
 
 		
         let appointmentChild: String = "appointment//" + String(userID) + "//" + String(appointmentID)
@@ -105,12 +106,15 @@ class BookingConfirmationViewController: UIViewController, UIPickerViewDataSourc
     
     func bookingDone() {
         
-        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let mainStoryBoard = UIStoryboard(name: "MainConfirmed", bundle: nil)
+		
+		
+		
         let viewController = mainStoryBoard.instantiateViewController(withIdentifier: "TabBarController")
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = viewController
         let tabBarController: UITabBarController = (appDelegate.window?.rootViewController as? UITabBarController)!
-        tabBarController.selectedIndex = 1
+        tabBarController.selectedIndex = 0
     }
     
     func displayAlert(message: String) {

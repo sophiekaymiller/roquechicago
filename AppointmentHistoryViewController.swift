@@ -31,7 +31,6 @@ class AppointmentHistoryViewController: UITableViewController {
     var sectionTitle: [String] = ["Upcoming", "Past"]
 	var appointmentData: Array<DataSnapshot> = []
 	var db: Database!
-	var bookingKey = ""
 	var appointment = Appointment()
 
 	lazy var ref: DatabaseReference = Database.database().reference()
@@ -47,7 +46,7 @@ class AppointmentHistoryViewController: UITableViewController {
         title = "Appointments"
 		db = Database.database()
 		
-		appointmentRef = ref.child("appointment").child(bookingKey)
+		appointmentRef = ref.child("appointment").childByAutoId()
 		
 		let nib = UINib(nibName: "AppointmentTableViewCell", bundle: nil)
 		tableView.register(nib, forCellReuseIdentifier: "appointment")

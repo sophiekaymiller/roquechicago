@@ -17,5 +17,8 @@ class AppState: NSObject {
     var location: CLLocation? = nil
     var email: String?
     var category: String?
+	var username: String?
+	var name: String?
+	var uid: String?
     
 }

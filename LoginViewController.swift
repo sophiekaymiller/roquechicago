@@ -13,6 +13,9 @@ import FirebaseAuth
 import FBSDKLoginKit
 import GoogleSignIn
 
+protocol LoginControllerDelegate: class {
+	func loginControllerDidFinish(_ controller: LoginViewController)
+}
 
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 	
@@ -22,6 +25,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
 		case employee = "employee"
 		case client = "client"
 	}
+	
+	weak var delegate: LoginControllerDelegate?
+
 	
 	
 	// ----- Login Function -----
@@ -37,11 +43,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
 	@IBOutlet weak var googleSigninButton: GIDSignInButton!
 	
 	
+	
 	@IBOutlet weak var loginButton: UIButton!
 	
 	
 	//Firebase Database
 	var rootRef: DatabaseReference!
+	lazy var apptRef = Database.database().reference().child("appointment")
 	var db: Database!
 	var user: User!
 	
@@ -164,7 +172,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
             }
 			MeasurementHelper.sendLoginEvent()
 			AppState.sharedInstance.signedIn = true
+			
         }
+		self.delegate?.loginControllerDidFinish(self)
+
     }
     
     
@@ -189,6 +200,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
 				
                 // ...
                 print("\n\n-----\nFB Firebase auth success\n------\n\n ")
+			
+			
+			
                 AppState.sharedInstance.signedIn = true;
                 let mainStoryBoard = UIStoryboard(name: "MainConfirmed", bundle: nil)
                 let viewController = mainStoryBoard.instantiateViewController(withIdentifier: "TabBarController")

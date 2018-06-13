@@ -43,7 +43,7 @@ class ChartsViewController: UIViewController {
 		let dataSet = BarChartDataSet(values: [entry1, entry2, entry3], label: "Widgets Type")
 		let data = BarChartData(dataSets: [dataSet])
 		
-		dataSet.colors = ChartColorTemplates.joyful()
+		dataSet.colors = ChartColorTemplates.pastel()
 
 		barChart.data = data
 		barChart.chartDescription?.text = "Number of Widgets by Type"
@@ -55,13 +55,15 @@ class ChartsViewController: UIViewController {
 	}
 	func pieChartUpdate () {
 		
-		let entry1 = PieChartDataEntry(value: Double(number1.value), label: "#1")
-		let entry2 = PieChartDataEntry(value: Double(number2.value), label: "#2")
-		let entry3 = PieChartDataEntry(value: Double(number3.value), label: "#3")
-		let dataSet = PieChartDataSet(values: [entry1, entry2, entry3], label: "Widget Types")
+		let entry1 = PieChartDataEntry(value: Double(number1.value), label: "Haircut")
+		let entry2 = PieChartDataEntry(value: Double(number2.value), label: "Blowout")
+		let entry3 = PieChartDataEntry(value: Double(number3.value), label: "Hair Color")
+		let dataSet = PieChartDataSet(values: [entry1, entry2, entry3], label: "Services")
 		let data = PieChartData(dataSet: dataSet)
 		pieChart.data = data
-		pieChart.chartDescription?.text = "Share of Widgets by Type"
+		pieChart.chartDescription?.text = "Percentage of Services by Type"
+		
+		dataSet.colors = ChartColorTemplates.pastel()
 		
 		//All other additions to this function will go here
 		

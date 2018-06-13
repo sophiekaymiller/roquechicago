@@ -41,15 +41,15 @@ class BusinessPageViewController: UIViewController {
 		
 		let db = Database.database()
 		let ref = db.reference()
-		let placeRef = ref.child("places")
+		//let placeRef = ref.child("places")
 
         self.name.text = place.placeName
         self.addressFull.text = place.address
 		self.ratingBar.rating = place.rating
         self.speciality.text = ""
-		self.distance.text = String(format:"%.2f", (place?.distance)!) + " mi"
+		self.distance.text = String(format:"%.2f", (place.distance)) + " mi"
 		
-        //self.timings.text = place!.timings ?? "No Time Available"
+		self.timings.text = place.timings
         
 //        if place!.status == "Closed"{
 //            self.status.backgroundColor = UIColor.red
@@ -74,7 +74,7 @@ class BusinessPageViewController: UIViewController {
                 
 //                self.status.text = place?.openNowStatus == 0 ? "Closed" : "Open"
                 
-				print("\n\n\n\n\n\n----\(self.place!.website) \(self.place!.phoneNumber)----\n\n\n\n\n\n")
+				print("\n\n\n\n\n\n----\(self.place?.website ?? "www.example.com") \(self.place?.phoneNumber ?? "9789447624")----\n\n\n\n\n\n")
                 
                 self.loadFirstPhotoForPlace(placeID: (place!.placeID), imageView: self.profileImage)
             } else {
@@ -108,12 +108,11 @@ class BusinessPageViewController: UIViewController {
             .loadPlacePhoto(photoMetadata, constrainedTo: imageView.bounds.size,
                             scale: imageView.window!.screen.scale) { (photo, error) -> Void in
                                 if let error = error {
-                                    // TODO: handle the error.
-                                    print("Error: \(error)")
+									
+                                    print("Error: \(error.localizedDescription)")
                                 } else {
-                                    imageView.image = photo;
-									print("\n\nphoto : \(photo?.description ?? "")\n\n")
-                                    //self.imageView.description = photoMetadata.attributions;
+									self.profileImage.image = photo
+									print("\n\nphoto : \(photo?.description ?? "default")\n\n")
                                 }
         }
     }

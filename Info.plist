@@ -36,6 +36,16 @@
 				<string>com.googleusercontent.apps.342590929616-bg2p95u3m3sv2bunoo46auij7gle1fv6</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.sophieMiller.RoqueSchedule</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>compass</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.6</string>
