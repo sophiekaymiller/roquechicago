@@ -11,11 +11,14 @@ import Charts
 
 class ChartsViewController: UIViewController {
 	
+	@IBOutlet weak var goToCalendar: UIBarButtonItem!
 	@IBOutlet weak var number1: UISlider!
 	@IBOutlet weak var number2: UISlider!
 	@IBOutlet weak var number3: UISlider!
 	@IBOutlet weak var pieChart: PieChartView!
 	@IBOutlet weak var barChart: BarChartView!
+	
+	@IBOutlet weak var calendarButton: UIBarButtonItem!
 	
 	@IBAction func renderCharts() {
 		barChartUpdate()

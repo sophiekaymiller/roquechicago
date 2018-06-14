@@ -97,7 +97,7 @@ class BookingConfirmationViewController: UIViewController, UIPickerViewDataSourc
 		let appointmentVal: NSDictionary = ["appointmentId": appointmentID, "userId": userID, "serviceProviderId": placeID!, "serviceProviderName": placeName!, "lat": lat!, "lng": lng!, "date": date, "time": time, "speciality": specialty ?? ""]
 
 		
-        let appointmentChild: String = "appointment//" + String(userID) + "//" + String(appointmentID)
+        let appointmentChild: String = "appointment" + String(userID) + String(appointmentID)
         
         FirebaseHelper.save(child: appointmentChild, value: appointmentVal)
         
@@ -121,23 +121,11 @@ class BookingConfirmationViewController: UIViewController, UIPickerViewDataSourc
         
         let alertController = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in
-            // whatever else you need to do here
+			
             self.bookingDone()
         }))
         
         present(alertController, animated: true, completion: nil)
     }
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+	
 }

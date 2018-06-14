@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FBSDKLoginKit
+import Compass
 
 class TempLogoutViewController: UIViewController {
 	
@@ -22,7 +23,7 @@ class TempLogoutViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 
-		title = "More"		
+		title = "Logout"		
     }
 
     @IBAction func signout() {
@@ -40,7 +41,7 @@ class TempLogoutViewController: UIViewController {
         let mainStoryBoard = UIStoryboard(name: "MainConfirmed", bundle: nil)
 		
         let loginViewController: LoginViewController = mainStoryBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-		
+
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginViewController
 

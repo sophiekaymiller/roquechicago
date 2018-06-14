@@ -43,7 +43,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
 	@IBOutlet weak var googleSigninButton: GIDSignInButton!
 	
 	
-	
 	@IBOutlet weak var loginButton: UIButton!
 	
 	
@@ -79,20 +78,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
 		
 		userPickerView.delegate = self
 		userPickerView.dataSource = self
-	
-        // Add facebook login button
-//		let titleText = NSAttributedString(string: "login")
-//
-//        fbLoginButton.setAttributedTitle(titleText, for: UIControlState.normal)
-//        x = (self.view.frame.width / 2) - 55
-//        y = googleSigninButton.frame.minY - 60
-//        fbLoginButton.frame = CGRect(x: x, y: y, width: 110, height: 40)
-//        self.fbLoginButton.readPermissions = ["public_profile", "email"]
-//
-//        self.fbLoginButton.delegate = self
-//        containerView.addSubview(fbLoginButton)
-		
-        // if user signed in using email and password
 		
 		if let user = Auth.auth().currentUser {
 			MeasurementHelper.sendLoginEvent()
@@ -105,14 +90,20 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
         if (FBSDKAccessToken.current() != nil) {
             // User is logged in, do work such as go to next view controller.
             // use 'accessToken' here.
-            print("\n\n-----\nUser already logged in using fb\n-----\n\n");
+			
+			print("\n\n-----\nUser already logged in using fb\n-----\n\n");
+
+			
+			AppState.sharedInstance.signedIn = true
+			AppState.sharedInstance.email = user.email
+			self.performSegue(withIdentifier: "loginSuccessful", sender: self)
 
 		}
-		
+		GIDSignInButton.init().colorScheme = .light
+
         // set GIDSignIn object
-		//Make a symbolic breakpoint at UIViewAlertForUnsatisfiableConstraints to catch this in the debugger.
-		
         GIDSignIn.sharedInstance().uiDelegate = self
+		
 //		GIDSignIn.sharedInstance().signInSilently()
 
     }

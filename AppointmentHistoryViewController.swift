@@ -22,6 +22,7 @@ class AppointmentHistoryCell: UITableViewCell {
 }
 
 class AppointmentHistoryViewController: UITableViewController {
+	
 
 	let kSectionComments = 2
 	let kSectionSend = 1
@@ -34,11 +35,11 @@ class AppointmentHistoryViewController: UITableViewController {
 	var appointment = Appointment()
 
 	lazy var ref: DatabaseReference = Database.database().reference()
+	var firebaseArray: FUIArray!
 	var appointmentRef: DatabaseReference!
 	var refHandle: DatabaseHandle?
-	
-	//var User: User!
-	//var Auth: Auth!
+	var dataSource: FUITableViewDataSource!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,11 +47,10 @@ class AppointmentHistoryViewController: UITableViewController {
         title = "Appointments"
 		db = Database.database()
 		
-		appointmentRef = ref.child("appointment").childByAutoId()
-		
-		let nib = UINib(nibName: "AppointmentTableViewCell", bundle: nil)
-		tableView.register(nib, forCellReuseIdentifier: "appointment")
+		appointmentRef = ref.child("appointment")
+		firebaseArray = FUIArray.init(query: appointmentRef)
 
+	
 		let doneBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 44))
 		doneBar.autoresizingMask = .flexibleWidth
 		let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
