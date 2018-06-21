@@ -11,14 +11,13 @@ import Firebase
 import GooglePlaces
 import GooglePlacePicker
 
-class CategoryTableViewCell: UITableViewCell, GMSPlacePickerViewControllerDelegate {
-	
-	func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
-		
-	}
+class CategoryTableViewCell: UITableViewCell {
 	
     @IBOutlet var categoryImage: UIImageView!
     @IBOutlet var categoryTitle: UILabel!
+	@IBOutlet weak var onboardingButton: UIButton!
+
+
 }
 
 class CategoriesViewController: UITableViewController, CLLocationManagerDelegate {
@@ -37,36 +36,27 @@ class CategoriesViewController: UITableViewController, CLLocationManagerDelegate
     var searchController: UISearchController?
     var resultView: UITextView?
     var locationManager: CLLocationManager!
+	
+	var onboardingViewController = OnboardingViewController()
 
 	
 	//map implementation
-	@IBOutlet weak var placePickerController: UIViewController!
 	var placePickerDelegate: GMSPlacePickerViewControllerDelegate!
 	
 	@IBOutlet weak var mapButton: UIBarButtonItem!
-	
 	
 	@IBAction func mapButtonClicked(_ sender: Any) {
 	}
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
+		
+		title = "Bookings"
+		
         categories = ["Haircut", "Blow Dry", "Hair Color", "EyeLashes", "Other"]
         images = ["scissors", "hairdryer", "dye", "hairdresser-chair", "more-icon"]
 
 		
-	// Set the title of view
-		title = "Appointments"
-        
-//        self.tableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        //Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        
-        
         // Navigation bar button
         navigationItem.leftBarButtonItem =
             UIBarButtonItem(image: UIImage(named: "location"), landscapeImagePhone: nil, style: UIBarButtonItemStyle.plain, target: self, action: #selector(CategoriesViewController.navButtonClicked))
@@ -109,7 +99,17 @@ class CategoriesViewController: UITableViewController, CLLocationManagerDelegate
         searchController?.hidesNavigationBarDuringPresentation = false
     }
 	
-
+	
+	@IBAction func onboardingPressed(_ sender: UIButton) {
+		
+		performSegue(withIdentifier: "showOnboarding", sender: self)
+		
+	}
+	
+	@IBAction func showBooking(_ sender: Any) {
+		performSegue(withIdentifier: "showBooking", sender: self)
+	}
+	
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
