@@ -12,21 +12,18 @@ import FirebaseUI
 import FirebaseDatabase
 
 class AppointmentHistoryCell: UITableViewCell {
-    
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var specialty: UILabel!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var status: UILabel!
 	@IBOutlet weak var profileImage: UIImage!
-    
 }
 
 class AppointmentHistoryViewController: UITableViewController {
-	
 
-	let kSectionComments = 2
-	let kSectionSend = 1
-	let kSectionPost = 0
+//	let kSectionComments = 2
+//	let kSectionSend = 1
+//	let kSectionPost = 0
 	
     var cellIdentifier = "AppointmentHistoryCell"
     var sectionTitle: [String] = ["Upcoming", "Past"]
@@ -86,14 +83,14 @@ class AppointmentHistoryViewController: UITableViewController {
 		// Listen for new comments in the Firebase database
 		appointmentRef.observe(.childAdded, with: { (snapshot) -> Void in
 			self.appointmentData.append(snapshot)
-			self.tableView.insertRows(at: [IndexPath(row: self.appointmentData.count-1, section: self.kSectionComments)], with: UITableViewRowAnimation.automatic)
+			self.tableView.insertRows(at: [IndexPath(row: self.appointmentData.count-1, section: 1)], with: UITableViewRowAnimation.automatic)
 		})
 		
 		// Listen for deleted comments in the Firebase database
 		appointmentRef.observe(.childRemoved, with: { (snapshot) -> Void in
 			let index = self.indexedAppointments(snapshot)
 			self.appointmentData.remove(at: index)
-			self.tableView.deleteRows(at: [IndexPath(row: index, section: self.kSectionComments)], with: UITableViewRowAnimation.automatic)
+			self.tableView.deleteRows(at: [IndexPath(row: index, section: 1)], with: UITableViewRowAnimation.automatic)
 		})
 
 		refHandle = appointmentRef.observe(DataEventType.value, with: { (snapshot) in

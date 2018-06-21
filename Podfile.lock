@@ -1,24 +1,26 @@
 PODS:
   - Aardvark (3.3.2):
     - CoreAardvark (~> 2.0)
+  - Anchors (2.3.0)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
-  - BoringSSL (10.0.3):
-    - BoringSSL/Implementation (= 10.0.3)
-    - BoringSSL/Interface (= 10.0.3)
-  - BoringSSL/Implementation (10.0.3):
-    - BoringSSL/Interface (= 10.0.3)
-  - BoringSSL/Interface (10.0.3)
+  - BoringSSL (10.0.5):
+    - BoringSSL/Implementation (= 10.0.5)
+    - BoringSSL/Interface (= 10.0.5)
+  - BoringSSL/Implementation (10.0.5):
+    - BoringSSL/Interface (= 10.0.5)
+  - BoringSSL/Interface (10.0.5)
   - Caishen (2.1.2)
   - Charts (3.1.1):
     - Charts/Core (= 3.1.1)
   - Charts/Core (3.1.1)
   - Compass (6.0.0)
   - CoreAardvark (2.1.1)
+  - CVCalendar (1.6.1)
   - Eureka (4.1.1)
   - FBSDKCoreKit (4.33.0):
     - Bolts (~> 1.7)
@@ -102,6 +104,11 @@ PODS:
     - FirebaseUI/Auth
     - TwitterKit (~> 3.0)
   - FloatRatingView (2.0)
+  - GoogleAPIClientForREST/Calendar (1.3.4):
+    - GoogleAPIClientForREST/Core
+    - GTMSessionFetcher (>= 1.1.7)
+  - GoogleAPIClientForREST/Core (1.3.4):
+    - GTMSessionFetcher (>= 1.1.7)
   - GoogleMaps (2.7.0):
     - GoogleMaps/Maps (= 2.7.0)
   - GoogleMaps/Base (2.7.0)
@@ -160,6 +167,8 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - paper-onboarding (4.1.0)
+  - Pastel (0.4.0)
   - Protobuf (3.6.0)
   - RandomUserSwift (0.05)
   - SDWebImage (4.4.1):
@@ -172,9 +181,11 @@ PODS:
 
 DEPENDENCIES:
   - Aardvark
+  - Anchors (~> 2.3)
   - Caishen
   - Charts (~> 3.1)
   - Compass
+  - CVCalendar (~> 1.6.1)
   - Eureka
   - FBSDKCoreKit
   - FBSDKLoginKit
@@ -184,23 +195,28 @@ DEPENDENCIES:
   - Firebase/Database
   - FirebaseUI
   - FloatRatingView (~> 2.0.0)
+  - GoogleAPIClientForREST/Calendar
   - GoogleMaps
   - GooglePlacePicker
   - GooglePlaces
   - GoogleSignIn
   - JTAppleCalendar
+  - paper-onboarding
+  - Pastel
   - RandomUserSwift
   - SwiftyStoreKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Aardvark
+    - Anchors
     - Bolts
     - BoringSSL
     - Caishen
     - Charts
     - Compass
     - CoreAardvark
+    - CVCalendar
     - Eureka
     - FBSDKCoreKit
     - FBSDKLoginKit
@@ -215,6 +231,7 @@ SPEC REPOS:
     - FirebaseStorage
     - FirebaseUI
     - FloatRatingView
+    - GoogleAPIClientForREST
     - GoogleMaps
     - GooglePlacePicker
     - GooglePlaces
@@ -229,6 +246,8 @@ SPEC REPOS:
     - JTAppleCalendar
     - leveldb-library
     - nanopb
+    - paper-onboarding
+    - Pastel
     - Protobuf
     - RandomUserSwift
     - SDWebImage
@@ -238,12 +257,14 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Aardvark: da91b0114f31f45c684775d16aae9dafea6cb0ed
+  Anchors: 000f9206b6f898ac9c021e4cf537161efb0d9ec3
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  BoringSSL: c46efb47593135382bc0934196f16d2f726f5f36
+  BoringSSL: cf3f1793eb6e3c445c4d150456341f149c268a35
   Caishen: 5f8195411da0f53862a246db5fc219a8db105924
   Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
   Compass: ff30e2056c549ea5cb5b8a307d28ef628e4209ff
   CoreAardvark: fb2c75fd1928f7cbd17901a41e69a9f73c5aee41
+  CVCalendar: 505c11b11a088b43f159806e791eba1c2540853b
   Eureka: b88fb930e42c79f8c03c373d0fcdc28c1d6c50ed
   FBSDKCoreKit: 572b047a7e029bc44542bcf8a59414e7ff2b543e
   FBSDKLoginKit: 88cb456349cfb3b554427ce4f8b43729d85dfb40
@@ -258,6 +279,7 @@ SPEC CHECKSUMS:
   FirebaseStorage: 7ca4bb7b58a25fa647b04f524033fc7cb7eb272b
   FirebaseUI: 5d97d3d5d6a019fc960eb573ea6ce9fb8c310669
   FloatRatingView: 857ab8f10040d06a42fc979f486c8f9fecd2f2e5
+  GoogleAPIClientForREST: f7951c455df271bc6259b3ddb4073d0026475ccf
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlacePicker: 59ea44db173c58486ad6123993e81feefcbce9c3
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
@@ -272,6 +294,8 @@ SPEC CHECKSUMS:
   JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  paper-onboarding: 344780cbb0bfc229cd1862f5b9bba446b23c5185
+  Pastel: 7fa5e26123b3dbe11f7ed255654bf37100b199a5
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
   RandomUserSwift: 7a0e234469e186e8c344551101a6990d0c9cc197
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
@@ -279,6 +303,6 @@ SPEC CHECKSUMS:
   TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
   TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
 
-PODFILE CHECKSUM: 6db8e532c02cf27ead2884e593d0675f7584c644
+PODFILE CHECKSUM: 613c39a3159e9b17c0015b69cae5975200528afd
 
 COCOAPODS: 1.5.3

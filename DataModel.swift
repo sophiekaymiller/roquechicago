@@ -1,13 +1,15 @@
 //
-//  UserView.swift
-//  Aardvark
+//  DataModel.swift
+//  
 //
-//  Created by Sophie Miller on 6/12/18.
+//  Created by Sophie Miller on 6/14/18.
 //
 
 import UIKit
+import paper_onboarding
 
-class UserView: UIView {
+
+class DataModel: PaperOnboarding {
 
     /*
     // Only override draw() if you perform custom drawing.
